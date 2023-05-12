@@ -1,0 +1,54 @@
+{%extends 'base/main.html' %}
+
+{% load static %}
+
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'flatpickr/flatpickr.min.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% load bootstrap4 %}
+{% load widget_tweaks %}
+
+
+
+
+<div class="card">
+
+    <div class="card-header">
+        <div>
+            <h1>Hello!</h1>
+        </div>
+        <div>
+            <h3>Add or edit your tasks</h3>
+        </div>
+        <a href="{% url 'tasks' %}" class="link mb-3">Go back</a>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="" class="mb-3">
+            {% csrf_token %}
+
+            {% bootstrap_form form %}
+
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </form>
+
+        <script src="{% static 'flatpickr/flatpickr.min.js' %}"></script>
+        <script>
+            flatpickr("#id_due_date", {
+                dateFormat: "Y-m-d"
+            });
+        </script>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+{% endblock content %}
